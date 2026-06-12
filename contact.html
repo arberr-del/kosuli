@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Контакт - Кошули</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            margin-top: 80px;
+            width: 100%;
+            height: 60vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-image: url('./Hero-Banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="rgba(255,255,255,0.03)"/><path d="M0 0L50 50L100 0" stroke="rgba(255,255,255,0.1)" fill="none"/></svg>');
+            opacity: 0.3;
+            background: rgba(0, 0, 0, 10); /* make it 0.6–0.7 for stronger contrast */
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,255,255,0.03),
+                rgba(255,255,255,0.03) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Contact Content */
+        .contact-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            min-width: 40px;
+        }
+
+        .info-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #667eea;
+        }
+
+        .info-details p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            height: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .map-placeholder {
+            z-index: 1;
+            text-align: center;
+        }
+
+        .map-placeholder p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .hours-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .hours-section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .hours-item .day {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .hours-item .time {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #e74c3c;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #34495e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-grid, .hours-grid, .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .map-container {
+                min-height: 300px;
+            }
+
+            .contact-hero {
+                height: 46vh;
+                background-size: 120% auto;
+    }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Кошули</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Почетна</a></li>
+                <li><a href="index.html#products">Производи</a></li>
+                <li><a href="about.html">За Нас</a></li>
+                <li><a href="contact.html">Контакт</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1>Контакт</h1>
+            <p>Посетете не или контактирајте не</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Контакт Информации</h3>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-details">
+                        <h4>Адреса на Продавница</h4>
+                        <p>ул. Македонија 123<br>1000 Скопје, Македонија<br><br>Лесно достапна со јавен превоз, во близина на централното градско подрачје.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h4>Телефон</h4>
+                        <p>Фиксен: +389 2 123 4567<br>Мобилен: +389 70 123 456<br><br>Достапни сме секој работен ден.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-details">
+                        <h4>Email</h4>
+                        <p>Општи прашања: info@kosuli.mk<br>Продажба: prodazba@kosuli.mk<br><br>Одговараме во рок од 24 часа.</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">💬</div>
+                    <div class="info-details">
+                        <h4>Социјални Мрежи</h4>
+                        <p>Следете не на Facebook, Instagram и Twitter за најнови понуди, новости и промоции.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <div>🗺️</div>
+                    <p>Локација на Продавница</p>
+                    <p style="font-size: 1rem; margin-top: 0.5rem;">ул. Македонија 123, Скопје</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hours-section">
+            <h3>Работно Време</h3>
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <span class="day">Понedelник</span>
+                    <span class="time">09:00 - 20:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Вторник</span>
+                    <span class="time">09:00 - 20:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Среда</span>
+                    <span class="time">09:00 - 20:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Четврток</span>
+                    <span class="time">09:00 - 20:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Петок</span>
+                    <span class="time">09:00 - 20:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Сабота</span>
+                    <span class="time">10:00 - 18:00</span>
+                </div>
+                <div class="hours-item">
+                    <span class="day">Недела</span>
+                    <span class="time">Затворено</span>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #666; font-style: italic;">
+                * За време на државните празници, работното време може да биде изменето. <br>Ве молиме контактирајте не за повеќе информации.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Кошули</h3>
+                <p>Автентичен македонски бренд што нуди висококвалитетна облека за секој.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/kosuli.mk" target="_blank">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/kosuli.mk/" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Линкови</h3>
+                <a href="about.html">За Нас</a>
+                <a href="contact.html">Локација на Продавница</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Кошули. Сите права задржани.</p>
+        </div>
+    </footer>
+</body>
+</html>
